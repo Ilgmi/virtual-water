@@ -7,6 +7,8 @@ import {VirtualWaterCalculatorService} from './services/virtual-water-calculator
 import { SelectProductModalComponent } from './modals/select-product-modal/select-product-modal.component';
 import {NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
 import { ShowProductInformationModalComponent } from './modals/show-product-information-modal/show-product-information-modal.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+
 
 
 @NgModule({
@@ -14,7 +16,8 @@ import { ShowProductInformationModalComponent } from './modals/show-product-info
   imports: [
     CommonModule,
     HomeRoutingModule,
-    NgbModalModule
+    NgbModalModule,
+    FontAwesomeModule
   ],
   providers: [
     VirtualWaterCalculatorService

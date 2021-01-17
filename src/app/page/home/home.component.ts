@@ -4,6 +4,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {SelectProductModalComponent} from './modals/select-product-modal/select-product-modal.component';
 import {Product} from '../../shared/models/product';
 import {ShowProductInformationModalComponent} from './modals/show-product-information-modal/show-product-information-modal.component';
+import {faInfoCircle, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,9 @@ import {ShowProductInformationModalComponent} from './modals/show-product-inform
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  infoCircle = faInfoCircle;
+  trashAlt = faTrashAlt;
 
   constructor(public virtualWaterCalculator: VirtualWaterCalculatorService, private modalService: NgbModal) {
   }

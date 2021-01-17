@@ -39,7 +39,6 @@ export class VirtualWaterCalculatorService {
   private calcVirtualWater(): void {
     let sum = 0;
     this.products.getValue().forEach(x => sum += x.virtualWater);
-    console.log(sum, this.products.getValue());
     this.virtualWater.next(sum);
   }
 

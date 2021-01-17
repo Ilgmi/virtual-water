@@ -13,8 +13,8 @@
 
     <div class="card ml-2 mt-2" *ngFor="let product of virtualWaterCalculator.products$ | async">
       <div class="card-header">
-        <button class="btn btn-info" (click)="showInformation(product)">I</button>
-        <button class="btn btn-danger" (click)="remove(product)">X</button>
+        <button class="btn btn-outline-info" (click)="showInformation(product)"><fa-icon [icon]="infoCircle"></fa-icon></button>
+        <button class="btn btn-outline-danger" (click)="remove(product)"><fa-icon [icon]="trashAlt"></fa-icon></button>
       </div>
       <div class="card-body">
         {{product.name}}
