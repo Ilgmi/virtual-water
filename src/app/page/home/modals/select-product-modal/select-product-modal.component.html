@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <h4 class="modal-title">Hi there!</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="card" (click)="select(sp)" *ngFor="let sp of selectableProducts$ | async">
+    <div class="card-header">
+      {{sp.selected}}
+    </div>
+    <div class="card-body">
+      {{sp.product.name}}
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="close()">Close</button>
+</div>

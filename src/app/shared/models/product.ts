@@ -5,6 +5,7 @@ export class Product {
   public virtualWater: number;
 
   public constructor(data: Partial<Product>) {
+    Object.assign(this, data);
   }
 
 
