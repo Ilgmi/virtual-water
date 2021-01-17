@@ -6,17 +6,18 @@
 <div class="container">
 
   <div class="d-flex" >
+    <button class="btn btn-outline-primary" (click)="reset()">Reset</button>
     <button class="btn btn-outline-primary" (click)="addProduct()">+</button>
   </div>
   <div class="d-flex flex-wrap">
 
-    <div class="card ml-2 mt-2" *ngFor="let p of virtualWaterCalculator.products$ | async">
+    <div class="card ml-2 mt-2" *ngFor="let product of virtualWaterCalculator.products$ | async">
       <div class="card-header">
-        <button class="btn btn-info">I</button>
-        <button class="btn btn-danger">X</button>
+        <button class="btn btn-info" (click)="showInformation(product)">I</button>
+        <button class="btn btn-danger" (click)="remove(product)">X</button>
       </div>
       <div class="card-body">
-        {{p.name}}
+        {{product.name}}
       </div>
     </div>
 

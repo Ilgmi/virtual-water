@@ -6,10 +6,11 @@ import { HomeComponent } from './home.component';
 import {VirtualWaterCalculatorService} from './services/virtual-water-calculator.service';
 import { SelectProductModalComponent } from './modals/select-product-modal/select-product-modal.component';
 import {NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
+import { ShowProductInformationModalComponent } from './modals/show-product-information-modal/show-product-information-modal.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, SelectProductModalComponent],
+  declarations: [HomeComponent, SelectProductModalComponent, ShowProductInformationModalComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

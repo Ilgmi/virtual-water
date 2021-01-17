@@ -30,7 +30,8 @@ export class VirtualWaterCalculatorService {
     const p = this.products.getValue();
     const index = p.indexOf(product);
     if (index >= 0) {
-      this.products.next([...p.splice(index, 1)]);
+      p.splice(index, 1);
+      this.products.next(p);
       this.calcVirtualWater();
     }
   }
@@ -40,5 +41,9 @@ export class VirtualWaterCalculatorService {
     this.products.getValue().forEach(x => sum += x.virtualWater);
     console.log(sum, this.products.getValue());
     this.virtualWater.next(sum);
+  }
+
+  async reset(): Promise<void> {
+    this.products.next([]);
   }
 }
