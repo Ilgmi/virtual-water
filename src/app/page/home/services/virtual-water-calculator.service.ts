@@ -1,6 +1,7 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnDestroy} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {Product} from '../../../shared/models/product';
+import {CatalogService} from '../../../shared/services/catalog.service';
 
 @Injectable()
 export class VirtualWaterCalculatorService {
@@ -12,18 +13,23 @@ export class VirtualWaterCalculatorService {
   private virtualWater: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public virtualWater$ = this.virtualWater.asObservable();
 
-  constructor() {
+  constructor(private catalogService: CatalogService) {
+    this.load();
+    this.products$.subscribe(x => {
+      this.calcVirtualWater();
+      this.save();
+    });
   }
 
 
   public async addProduct(product: Product): Promise<void> {
     this.products.next([...this.products.getValue(), product]);
-    this.calcVirtualWater();
+    // this.calcVirtualWater();
   }
 
-  public async addProducts(products: Product[]): Promise<void>{
+  public async addProducts(products: Product[]): Promise<void> {
     this.products.next([...this.products.getValue(), ...products]);
-    this.calcVirtualWater();
+    // this.calcVirtualWater();
   }
 
   public async removeProduct(product: Product): Promise<void> {
@@ -32,7 +38,7 @@ export class VirtualWaterCalculatorService {
     if (index >= 0) {
       p.splice(index, 1);
       this.products.next(p);
-      this.calcVirtualWater();
+      // this.calcVirtualWater();
     }
   }
 
@@ -44,5 +50,19 @@ export class VirtualWaterCalculatorService {
 
   async reset(): Promise<void> {
     this.products.next([]);
+  }
+
+  private save(): void{
+    localStorage.setItem('selected-products', this.products.getValue().map(x => x.id).join(','));
+  }
+
+  private load(): void {
+    const productIds = localStorage.getItem('selected-products');
+    if (productIds) {
+      const products: Product[] = [];
+      productIds.split(',').map(x => Number(x)).forEach(x => products.push(this.catalogService.getProduct(x)));
+      this.addProducts(products).then();
+    }
+
   }
 }

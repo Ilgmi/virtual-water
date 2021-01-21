@@ -26,4 +26,12 @@ export class CatalogService {
     ];
     this.products.next(products);
   }
+
+  getProducts(productIds: number[]): Product[] {
+    return this.products.getValue().filter(x => productIds.indexOf(x.id) >= 0);
+  }
+
+  getProduct(id: number): Product {
+    return this.products.getValue().find(x => x.id === id);
+  }
 }
